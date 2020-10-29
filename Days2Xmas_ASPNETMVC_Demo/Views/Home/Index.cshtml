@@ -1,2 +1,13 @@
-﻿<h1>Home</h1>
+﻿@{
+    string[] menuItems = { "Days2Xmas1" };
+}
+<h1>Home</h1>
+
+<ul>
+    @foreach (var menuItem in menuItems)
+    {
+        <li><a href="@menuItem">@menuItem</a></li>
+    }
+</ul>
+
 
