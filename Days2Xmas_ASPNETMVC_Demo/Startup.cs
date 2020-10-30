@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Days2Xmas_ASPNETMVC_Demo.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,16 @@ namespace Days2Xmas_ASPNETMVC_Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            //services.AddTransient<Days2XmasCalculator>();
+            //services.AddTransient<IDays2XmasCalculator>(i =>
+            //{
+            //    if (DateTime.Now.Millisecond % 2 == 0)
+            //        return new Days2XmasMockCalculator();
+            //    else
+            //        return new Days2XmasCalculator();
+            //});
+            services.AddTransient<IDays2XmasCalculator>(i => new Days2XmasCalculator());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
