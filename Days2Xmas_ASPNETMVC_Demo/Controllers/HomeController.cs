@@ -13,18 +13,21 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
     {
         private readonly IDays2XmasCalculator days2XmasCalculator;
 
+        // Home page (menu)
         [HttpGet("~/")]
         public IActionResult Index()
         {
             return View();
         }
 
+        // Calculate in view
         [HttpGet("~/days2xmas01")]
         public IActionResult Days2Xmas01()
         {
             return View();
         }
 
+        // Calculate in controller and use of ViewBag
         [HttpGet("~/days2xmas02")]
         public IActionResult Days2Xmas02()
         {
@@ -35,6 +38,7 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View();
         }
 
+        // Calculate in controller and use of ViewModel
         [HttpGet("~/days2xmas03")]
         public IActionResult Days2Xmas03()
         {
@@ -44,6 +48,7 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View(model);
         }
 
+        // Calculate in Model
         [HttpGet("~/days2xmas04")]
         public IActionResult Days2Xmas04()
         {
@@ -53,6 +58,7 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View(model);
         }
 
+        // Dependency injection in controller
         [HttpGet("~/days2xmas05")]
         public IActionResult Days2Xmas05()
         {
@@ -61,6 +67,7 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View(model);
         }
 
+        // Dependency injection in view 
         [HttpGet("~/days2xmas06")]
         public IActionResult Days2Xmas06()
         {
@@ -68,6 +75,7 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View();
         }
 
+        // Modelbinding
         [HttpGet("~/days2xmas07/{year:int=2020}")]
         public IActionResult Days2Xmas07(int year)
         {
@@ -75,12 +83,14 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View(model);
         }
 
+        // User request in form (get)
         [HttpGet("~/days2xmas08")]
         public IActionResult Days2Xmas08Get()
         {
             return View(new Days2Xmas8ViewModel { Year = DateTime.Now.Year });
         }
 
+        // User response from form (post)
         [HttpPost("~/days2xmas08")]
         public IActionResult Days2Xmas08Post(Days2Xmas8ViewModel model)
         {
@@ -93,6 +103,7 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
                 return View("Days2Xmas08Get", model);
         }
 
+        // Use of partial view
         [HttpGet("~/days2xmas09")]
         public IActionResult Days2Xmas09()
         {
@@ -101,12 +112,15 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return View(model);
         }
 
+        // Use of ViewComponent
         [HttpGet("~/days2xmas10")]
         public IActionResult Days2Xmas10()
         {
             return View();
         }
 
+
+        // Return JSON
         [HttpGet("~/days2xmasapi/{year:int}")]
         public IActionResult Days2XmasAPI(int year)
         {
@@ -114,12 +128,15 @@ namespace Days2Xmas_ASPNETMVC_Demo.Controllers
             return Json(model);
         }
 
+
+        // JavaScript - use API 
         [HttpGet("~/days2xmas11")]
         public IActionResult Days2Xmas11()
         {
             return View();
         }
 
+        // Constructor (Dependency Injection)
         public HomeController(IDays2XmasCalculator days2XmasCalculator)
         {
             this.days2XmasCalculator = days2XmasCalculator;
