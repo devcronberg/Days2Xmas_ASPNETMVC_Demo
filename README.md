@@ -16,3 +16,4 @@ This application is a demo of ASP.NET Core MVC (version 3.1). It uses a calculta
 - Return JSON
 - JavaScript - use API 
 
+Use [this starter template](https://github.com/devcronberg/Days2Xmas_ASPNETMVC_Demo/tree/master/StartTemplate) for demo purposes (remember to compile the project to restore NuGet packages).
