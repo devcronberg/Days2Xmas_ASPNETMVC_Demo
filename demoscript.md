@@ -145,3 +145,38 @@ namespace Days2Xmas_ASPNETMVC_Demo.ViewComponents
 
 View in /Views/Shared/Components/Days2Xmas/Default.cshtml
 
+- Create days2xmas11
+  - AJAX
+  - Show LibMan (Axios)
+
+```HTML
+<h3>Days2Xmas11</h3>
+
+<div id="request">
+    <div>
+        <label>Year</label>
+        <input id="year" value="2020" />
+    </div>
+    <br />
+    <input id="calculate" type="submit" value="Calculate" />
+</div>
+
+<div id="response" style="display:none">
+    <p>There are <span id="response_days"></span> days days left until christmas in <span id="response_year"></span>.</p>
+</div>
+
+<p><a href="/">Home</a></p>
+
+<script src="~/lib/axios/axios.min.js"></script>
+<script>
+    document.getElementById("calculate").onclick = async () => {
+        let year = document.getElementById("year").value;
+        let apiResponse = await axios.get("Days2XmasApi/" + year);
+        let days = apiResponse.data.days;
+        document.getElementById("response_days").innerText = days;
+        document.getElementById("response_year").innerText = year;
+        document.getElementById("response").style.display = "block";
+    };
+
+</script>
+```
