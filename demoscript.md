@@ -46,5 +46,102 @@ public class Days2XmasCalculator
 ```
   
  - Create days2xmas05
-  - Calc in controller and use of ViewModel  
- 
+  - Dependency injection in controller
+
+```csharp
+services.AddTransient<Days2XmasCalculator>();
+//services.AddTransient<Days2XmasCalculator>();
+//services.AddTransient<IDays2XmasCalculator>(i =>
+//{
+//    if (DateTime.Now.Millisecond % 2 == 0)
+//        return new Days2XmasMockCalculator();
+//    else
+//        return new Days2XmasCalculator();
+//});
+// services.AddTransient<IDays2XmasCalculator>(i => new Days2XmasCalculator());
+```
+- Create days2xmas06
+  - Dependency injection in view
+    - Year in ViewBag
+
+```
+@inject IDays2XmasCalculator days2XmasCalculator
+```
+
+- Create days2xmas07
+  - Modelbinding
+  
+```csharp
+[HttpGet("~/days2xmas07/{year:int=2020}")]
+```
+
+- Create days2xmas08
+  - Get / Post (year)
+  
+```csharp
+public class Days2Xmas8ViewModel
+{
+  [Display(Name="Year for christmas")]
+  [Range(1900, 2050, ErrorMessage = "Wrong year")]        
+  public int Year { get; set; }        
+}
+```
+
+```html
+<form method="post" action="/Days2Xmas08">
+    <div>
+        <label asp-for="Year"></label>
+        <input asp-for="Year" />
+        <span asp-validation-for="Year"></span>
+    </div>
+    <input type="submit" value="Calculate"  />
+</form>
+```
+
+- Create days2xmas09
+  - Partial view
+
+```html
+<partial name="ShowDays2Xmas" model="@Model" />
+```
+
+- Create days2xmas10
+  - View Component
+  
+```csharp
+using Days2Xmas_ASPNETMVC_Demo.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Days2Xmas_ASPNETMVC_Demo.ViewComponents
+{
+    [ViewComponent(Name = "days2xmas")]
+    public class Days2XmasViewComponent : ViewComponent
+    {
+        private readonly IDays2XmasCalculator days2XmasCalculator;
+
+        public IViewComponentResult Invoke(int year = 2020)
+        {            
+            var model = new Days2XmasViewModel(days2XmasCalculator.CalculateDays(year), year);
+            return View(model);            
+        }
+
+        public Days2XmasViewComponent(IDays2XmasCalculator days2XmasCalculator)
+        {
+            this.days2XmasCalculator = days2XmasCalculator;
+        }
+    }
+}
+```
+
+
+```html
+<vc:days2xmas year="@DateTime.Now.Year"></vc:days2xmas>
+<vc:days2xmas year="2021"></vc:days2xmas>
+```
+
+View in /Views/Shared/Components/Days2Xmas/Default.cshtml
+
