@@ -1,6 +1,6 @@
-# Demo of MVC (Core 3.1)
+# Demo of 
 
-This application is a demo of ASP.NET Core MVC (version 3.1). It uses a calcultaion of days to christmas to show several features of MVC including:
+This application is a demo of ASP.NET Core MVC (version 5.0). It uses a calcultaion of days to christmas to show several features of MVC including:
 
 - Calculate in view
 - Calculate in controller and use of ViewBag
@@ -16,4 +16,3 @@ This application is a demo of ASP.NET Core MVC (version 3.1). It uses a calculta
 - Return JSON
 - JavaScript - use API 
 
-Use [this starter template](https://github.com/devcronberg/Days2Xmas_ASPNETMVC_Demo/tree/master/StartTemplate) for demo purposes (remember to compile the project to restore NuGet packages).
