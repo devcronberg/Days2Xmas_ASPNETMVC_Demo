@@ -16,3 +16,8 @@ This application is a demo of ASP.NET Core MVC (version 5.0). It uses a calculta
 - Return JSON
 - JavaScript - use API 
 
+For docker-demo use
+
+```
+docker run -p 8080:80 mcronberg/Days2Xmas_ASPNETMVC_Demo
+```
